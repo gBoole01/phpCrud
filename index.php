@@ -29,7 +29,7 @@ include 'inc/header.php'
                 <th scope="col">Name</th>
                 <th scope="col">Age</th>
                 <th scope="col">School</th>
-                <th scope="col">Actions</th>
+                <th scope="col" class="text-end">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -48,7 +48,7 @@ include 'inc/header.php'
                     <td>
                         <?= $row['school'] ?>
                     </td>
-                    <td>
+                    <td class="text-end">
                         <button class="btn btn-primary">
                             <a class="link-light text-decoration-none" href="/phpCrud/view.php?id=<?= $row['id'] ?>">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
