@@ -39,9 +39,9 @@ include 'inc/header.php'
                     <td>
                         <?= $row['school'] ?>
                     </td>
-                    <td><a href="/phpCrud/view.php">Voir</a></td>
-                    <td><a href="/phpCrud/edit.php">Modifier</a></td>
-                    <td><a href="/phpCrud/delete.php">Supprimer</a></td>
+                    <td><a href="/phpCrud/view.php?id=<?= $row['id'] ?>">Voir</a></td>
+                    <td><a href="/phpCrud/edit.php?id=<?= $row['id'] ?>">Modifier</a></td>
+                    <td><a href="/phpCrud/delete.php?id=<?= $row['id'] ?>">Supprimer</a></td>
                 </tr>
                 <?php
             }
