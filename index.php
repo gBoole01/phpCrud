@@ -1,6 +1,15 @@
 <?php
 require 'inc/connect.php';
 
+$deleteResponseMessage = "";
+if (isset($_GET['successDelete'])) {
+    if ($_GET['successDelete'] == true) {
+        $deleteResponseMessage = "L'étudiant a bien été supprimé";
+    } else {
+        $deleteResponseMessage = "Une erreur est survenue";
+    }
+}
+
 $statement = "SELECT * FROM students";
 $result = mysqli_query($conn, $statement);
 
@@ -8,6 +17,9 @@ include 'inc/header.php'
     ?>
 <h1>PHP Crud</h1>
 <a href="create.php">Ajouter un étudiant</a>
+<div>
+    <?= $deleteResponseMessage ?>
+</div>
 <div class="table-responsive">
 
     <table class="table">
