@@ -16,7 +16,7 @@ $student = mysqli_fetch_assoc($result);
 include 'inc/header.php'
     ?>
 <h1>Fiche étudiant</h1>
-<a href="index.php">Retour à l'acceuil</a>
+<a href="index.php">Retour à l'accueil</a>
 
 <div>
     <?= $student['id'] ?>

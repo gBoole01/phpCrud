@@ -13,11 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($name)) {
         $nameError = "Le nom est obligatoire";
     }
-    if (empty($age)) {
-        $ageError = "L'age est obligatoire";
-    }
     if (!is_numeric($age)) {
         $ageError = "L'age doit être un nombre";
+    }
+    if (empty($age)) {
+        $ageError = "L'age est obligatoire";
     }
     if (empty($school)) {
         $schoolError = "L'école est obligatoire";
@@ -36,18 +36,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 include 'inc/header.php'
     ?>
 <h1>Ajouter un étudiant</h1>
+<a href="index.php">Retour à l'accueil</a>
 <form action="/phpCrud/create.php" method="POST">
     <div class="form-group">
         <label for="name">Nom</label>
         <input id="name" name="name" type="text">
+        <span class="error">
+            <?= $nameError ?>
+        </span>
     </div>
     <div class="form-group">
         <label for="age">Age</label>
         <input id="age" name="age" type="text">
+        <span class="error">
+            <?= $ageError ?>
+        </span>
     </div>
     <div class="form-group">
         <label for="school">Ecole</label>
         <input id="school" name="school" type="text">
+        <span class="error">
+            <?= $schoolError ?>
+        </span>
     </div>
     <button type="submit">Ajouter</button>
 </form>
