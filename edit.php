@@ -5,14 +5,12 @@ $studentId = $_GET['id'] ? $_GET['id'] : null;
 if (!isset($studentId)) {
     header("Location: index.php");
 }
-
 $query = "SELECT * FROM students WHERE id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('i', $studentId);
 $stmt->execute();
 $result = $stmt->get_result();
 $student = mysqli_fetch_assoc($result);
-
 
 $nameError = "";
 $ageError = "";
@@ -36,12 +34,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $schoolError = "L'école est obligatoire";
     }
     if (empty($nameError) && empty($ageError) && empty($schoolError)) {
-        $query = "INSERT INTO students (name, age, school) VALUES (?, ?, ?)";
+        $query = "UPDATE students SET name = ?, age = ?, school = ? WHERE id = ?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param('sis', $name, $age, $school);
+        $stmt->bind_param('sisi', $name, $age, $school, $studentId);
         $stmt->execute();
         $result = $stmt->get_result();
-        header("Location: index.php");
+        header("Location: view.php?id=" . $studentId . "&success=true");
+    } else {
+        header("Location: view.php?id=" . $studentId . "&success=false");
     }
 }
 
@@ -51,7 +51,7 @@ include 'inc/header.php'
 <h1>Modifier l'étudiant</h1>
 <a href="index.php">Retour à l'accueil</a>
 
-<form action="/phpCrud/create.php" method="POST">
+<form action="/phpCrud/edit.php?id=<?= $student['id'] ?>" method="POST">
     <div class="form-group">
         <label for="name">Nom</label>
         <input value="<?= $student['name'] ?>" id="name" name="name" type="text">

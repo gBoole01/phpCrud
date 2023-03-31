@@ -13,14 +13,24 @@ $stmt->execute();
 $result = $stmt->get_result();
 $student = mysqli_fetch_assoc($result);
 
+$editResponseMessage = "";
+if (isset($_GET['success'])) {
+    if ($_GET['success'] == true) {
+        $editResponseMessage = "L'étudiant a bien été modifié";
+    } else {
+        $editResponseMessage = "Une erreur est survenue";
+    }
+}
+
+
 include 'inc/header.php'
     ?>
 <h1>Fiche étudiant</h1>
 <a href="index.php">Retour à l'accueil</a>
-
 <div>
-    <?= $student['id'] ?>
+    <?= $editResponseMessage ?>
 </div>
+
 <div>
     <?= $student['name'] ?>
 </div>
