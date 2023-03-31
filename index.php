@@ -14,9 +14,8 @@ $statement = "SELECT * FROM students";
 $result = mysqli_query($conn, $statement);
 
 include 'inc/header.php'
-    ?>
-<h1>PHP Crud</h1>
-<a href="create.php">Ajouter un étudiant</a>
+?>
+<h1>Liste des étudiants</h1>
 <div>
     <?= $deleteResponseMessage ?>
 </div>
@@ -30,9 +29,7 @@ include 'inc/header.php'
                 <th scope="col">Name</th>
                 <th scope="col">Age</th>
                 <th scope="col">School</th>
-                <th scope="col">&nbsp;</th>
                 <th scope="col">Actions</th>
-                <th scope="col">&nbsp;</th>
             </tr>
         </thead>
         <tbody>
@@ -51,11 +48,19 @@ include 'inc/header.php'
                     <td>
                         <?= $row['school'] ?>
                     </td>
-                    <td><a href="/phpCrud/view.php?id=<?= $row['id'] ?>">Voir</a></td>
-                    <td><a href="/phpCrud/edit.php?id=<?= $row['id'] ?>">Modifier</a></td>
-                    <td><a href="/phpCrud/delete.php?id=<?= $row['id'] ?>">Supprimer</a></td>
+                    <td>
+                        <button class="btn btn-primary">
+                            <a class="link-light text-decoration-none" href="/phpCrud/view.php?id=<?= $row['id'] ?>">Voir</a>
+                        </button>
+                        <button class="btn btn-warning">
+                            <a class="link-light text-decoration-none" href="/phpCrud/edit.php?id=<?= $row['id'] ?>">Modifier</a>
+                        </button>
+                        <button class="btn btn-danger">
+                            <a class="link-light text-decoration-none" href="/phpCrud/delete.php?id=<?= $row['id'] ?>">Supprimer</a>
+                        </button>
+                    </td>
                 </tr>
-                <?php
+            <?php
             }
             ?>
         </tbody>
